@@ -23,6 +23,7 @@ function RetrieveComponents()
 	Generator = exports["mythic-base"]:FetchComponent("Generator")
 	Vehicles = exports["mythic-base"]:FetchComponent("Vehicles")
 	Ped = exports["mythic-base"]:FetchComponent("Ped")
+	Version = exports["mythic-base"]:FetchComponent("Version")
 end
 
 AddEventHandler("Core:Shared:Ready", function()
@@ -44,6 +45,7 @@ AddEventHandler("Core:Shared:Ready", function()
 		"Generator",
 		"Vehicles",
 		"Ped",
+		"Version",
 	}, function(error)
 		if #error > 0 then
 			return
@@ -290,6 +292,8 @@ AddEventHandler("Core:Shared:Ready", function()
 				end
 			end
 		end)
+
+		Version:Check('Mythic-Framework/Mythic-VersionCheckers', GetCurrentResourceName())
 	end)
 end)
 

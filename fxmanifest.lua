@@ -1,8 +1,10 @@
-name 'ARP Emergency Services'
-author '[Alzar]'
-lua54 'yes'
 fx_version "cerulean"
 game "gta5"
+lua54 'yes'
+
+version '1.0.0'
+repository 'https://github.com/Mythic-Framework/mythic-police'
+
 client_script "@mythic-base/components/cl_error.lua"
 client_script "@mythic-pwnzor/client/check.lua"
 
