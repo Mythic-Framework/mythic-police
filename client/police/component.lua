@@ -133,7 +133,6 @@ local _pdStationPolys = {
 		options = {
 			name = "pdstation_impound",
 			heading = 0,
-			--debugPoly=true,
 			minZ = 22.04,
 			maxZ = 34.04
 		},
@@ -383,9 +382,9 @@ AddEventHandler("Core:Shared:Ready", function()
 		Interaction:RegisterMenu("pd-breach-robbery", "Breach House Robbery", "bomb", function(data)
 			local bruh = GlobalState["Robbery:InProgress"]
 			for k, v in ipairs(bruh) do
-				local fuck = GlobalState[string.format("Robbery:InProgress:%s", v)]
-				if fuck then
-					local dist = #(vector3(LocalPlayer.state.position.x, LocalPlayer.state.position.y, LocalPlayer.state.position.z) - vector3(fuck.x, fuck.y, fuck.z))
+				local robberyData = GlobalState[string.format("Robbery:InProgress:%s", v)]
+				if robberyData then
+					local dist = #(vector3(LocalPlayer.state.position.x, LocalPlayer.state.position.y, LocalPlayer.state.position.z) - vector3(robberyData.x, robberyData.y, robberyData.z))
 					if dist <= 3.0 then
 						Callbacks:ServerCallback("Police:Breach", {
 							type = "robbery",
@@ -401,9 +400,9 @@ AddEventHandler("Core:Shared:Ready", function()
 			if LocalPlayer.state.onDuty and LocalPlayer.state.onDuty == "police" then
 				local bruh = GlobalState["Robbery:InProgress"]
 				for k, v in ipairs(bruh) do
-					local fuck = GlobalState[string.format("Robbery:InProgress:%s", v)]
-					if fuck then
-						local dist = #(vector3(LocalPlayer.state.position.x, LocalPlayer.state.position.y, LocalPlayer.state.position.z) - vector3(fuck.x, fuck.y, fuck.z))
+					local robberyData = GlobalState[string.format("Robbery:InProgress:%s", v)]
+					if robberyData then
+						local dist = #(vector3(LocalPlayer.state.position.x, LocalPlayer.state.position.y, LocalPlayer.state.position.z) - vector3(robberyData.x, robberyData.y, robberyData.z))
 						return dist <= 3.0
 					end
 				end
@@ -538,7 +537,6 @@ AddEventHandler("Core:Shared:Ready", function()
 
 		Targeting.Zones:AddBox("pd-clockinoff-sandy", "clipboard-list", vector3(1833.55, 3678.69, 34.19), 1.0, 3.0, {
 			heading = 30,
-			--debugPoly=true,
 			minZ = 33.79,
 			maxZ = 35.59
 		}, policeDutyPoint, 2.0, true)
@@ -557,14 +555,12 @@ AddEventHandler("Core:Shared:Ready", function()
 
 		Targeting.Zones:AddBox("pd-clockinoff-lamesa", "clipboard-list", vector3(837.23, -1289.2, 28.24), 0.8, 2.2, {
 			heading = 0,
-			--debugPoly=true,
 			minZ = 27.24,
 			maxZ = 29.04,
 		}, policeDutyPoint, 2.0, true)
 
 		Targeting.Zones:AddBox("pd-clockinoff-courthouse", "clipboard-list", vector3(-528.46, -189.44, 38.23), 1.0, 1.0, {
 			heading = 30,
-			--debugPoly=true,
 			minZ = 37.63,
 			maxZ = 39.23
 		}, policeDutyPoint, 2.0, true)
@@ -616,7 +612,6 @@ AddEventHandler("Core:Shared:Ready", function()
 
 		Targeting.Zones:AddBox("prison-clockinoff", "clipboard", vector3(1838.94, 2578.14, 46.01), 2.0, 0.8, {
 			heading = 305,
-			--debugPoly=true,
 			minZ = 45.81,
 			maxZ = 46.61,
 		}, {
@@ -682,44 +677,38 @@ AddEventHandler("Core:Shared:Ready", function()
 			},
 		}
 
-		Targeting.Zones:AddBox("police-shitty-locker", "land-mine-on", vector3(461.59, -1000.0, 30.69), 1.0, 3.8, {
+		Targeting.Zones:AddBox("police-zone-locker", "land-mine-on", vector3(461.59, -1000.0, 30.69), 1.0, 3.8, {
 			heading = 0,
-			--debugPoly=true,
 			minZ = 29.69,
 			maxZ = 32.69,
 		}, locker, 3.0, true)
 
-		Targeting.Zones:AddBox("police-shitty-locker-2", "land-mine-on", vector3(1841.51, 3682.08, 34.19), 2.0, 1, {
+		Targeting.Zones:AddBox("police-zone-locker-2", "land-mine-on", vector3(1841.51, 3682.08, 34.19), 2.0, 1, {
 			heading = 30,
-			--debugPoly=true,
 			minZ = 33.19,
 			maxZ = 35.59
 		}, locker, 3.0, true)
 
-		Targeting.Zones:AddBox("police-shitty-locker-3", "land-mine-on", vector3(-436.32, 6009.79, 37.0), 0.2, 2.2, {
+		Targeting.Zones:AddBox("police-zone-locker-3", "land-mine-on", vector3(-436.32, 6009.79, 37.0), 0.2, 2.2, {
 			heading = 45,
-			--debugPoly=true,
 			minZ = 36.3,
 			maxZ = 38.1,
 		}, locker, 3.0, true)
 
-		Targeting.Zones:AddBox("police-shitty-locker-4", "land-mine-on", vector3(360.08, -1592.9, 25.45), 0.5, 2.8, {
+		Targeting.Zones:AddBox("police-zone-locker-4", "land-mine-on", vector3(360.08, -1592.9, 25.45), 0.5, 2.8, {
 			heading = 50,
-			--debugPoly=true,
 			minZ = 24.45,
 			maxZ = 27.45,
 		}, locker, 3.0, true)
 
-		Targeting.Zones:AddBox("police-shitty-locker-5", "land-mine-on", vector3(844.8, -1286.55, 28.24), 2.0, 1.2, {
+		Targeting.Zones:AddBox("police-zone-locker-5", "land-mine-on", vector3(844.8, -1286.55, 28.24), 2.0, 1.2, {
 			heading = 0,
-			--debugPoly=true,
 			minZ = 27.24,
 			maxZ = 29.84,
 		}, locker, 3.0, true)
 
-		Targeting.Zones:AddBox("ems-shitty-locker-2", "land-mine-on", vector3(-439.04, -309.88, 34.91), 0.8, 0.8, {
+		Targeting.Zones:AddBox("ems-zone-locker-2", "land-mine-on", vector3(-439.04, -309.88, 34.91), 0.8, 0.8, {
 			heading = 20,
-			--debugPoly=true,
 			minZ = 33.71,
 			maxZ = 36.11,
 		}, {
